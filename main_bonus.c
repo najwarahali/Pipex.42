@@ -79,6 +79,8 @@ int	main(int ac, char **av, char **env)
 	pip.i = -1;
 	while (++(pip.i) < pip.num_fork)
 		ft_exit(ac, av, env, &pip);
-	waitpid(-1, NULL, 0);
+	pip.i = -1;
+	while (++(pip.i) < pip.num_fork)
+		waitpid(-1, NULL, 0);
 	return (0);
 }
