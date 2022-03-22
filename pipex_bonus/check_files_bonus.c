@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   check_files_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrahali <nrahali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 01:57:47 by nrahali           #+#    #+#             */
-/*   Updated: 2022/03/22 02:00:24 by nrahali          ###   ########.fr       */
+/*   Created: 2022/03/13 17:34:56 by nrahali           #+#    #+#             */
+/*   Updated: 2022/03/22 01:37:05 by nrahali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../pipex_bonus.h"
 
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+int	check_fd1(char *av)
+{
+	int		fd;
 
-char	*ft_strjoin_1(char *s1, char *s2);
-int		ft_strlen_1(char *s);
-int		ft_strchr_1(char *str);
-char	*ft_substr_1(char *s, int start, int len);
-char	*get_next_line(int fd);
-int		ft_strcmp(char *s1, char *s2);
+	fd = open(av, O_RDONLY, 0644);
+	if (fd == -1)
+		perror("infile error");
+	return (fd);
+}
 
-#endif
+int	check_fd2(char *av)
+{
+	int	fileout;
+
+	fileout = open(av, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (fileout == -1)
+	{
+		perror("filout error");
+		exit(1);
+	}
+	return (fileout);
+}

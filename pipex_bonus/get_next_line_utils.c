@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrahali <nrahali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/21 22:06:53 by nrahali           #+#    #+#             */
-/*   Updated: 2022/03/21 02:15:16 by nrahali          ###   ########.fr       */
+/*   Created: 2022/03/22 01:58:02 by nrahali           #+#    #+#             */
+/*   Updated: 2022/03/22 01:58:05 by nrahali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ int	ft_strlen_1(char *str)
 	return (i);
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int			i;
+	int				i;
 	unsigned char	*s3;
 	unsigned char	*s4;
 

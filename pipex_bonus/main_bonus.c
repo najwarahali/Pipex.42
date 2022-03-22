@@ -1,36 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_files_bonus.c                                :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrahali <nrahali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/13 17:34:56 by nrahali           #+#    #+#             */
-/*   Updated: 2022/03/20 04:01:59 by nrahali          ###   ########.fr       */
+/*   Created: 2022/03/22 01:56:13 by nrahali           #+#    #+#             */
+/*   Updated: 2022/03/22 01:56:16 by nrahali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex_bonus.h"
 
-int	check_fd1(char *av)
+void	here_doc_f(char **av, char **env)
 {
-	int		fd;
+	int	fd[2];
 
-	fd = open(av, O_RDONLY, 0644);
-	if (fd == -1)
-		perror("infile error");
-	return (fd);
+	if (pipe(fd) == -1)
+	{
+		perror("pipe error");
+		exit (1);
+	}
+	check_fork1_doc(fd, env, av[3], av);
+	check_fork2_doc(fd, env, av[5], av[4]);
+	close(fd[0]);
+	close(fd[1]);
+	wait(0);
+	wait(0);
 }
 
-int	check_fd2(char *av)
+int	main(int ac, char **av, char **env)
 {
-	int	fileout;
-
-	fileout = open(av, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (fileout == -1)
+	if (ac < 5)
 	{
-		perror("filout error");
+		perror("Error of arguments.");
 		exit(1);
 	}
-	return (fileout);
+	if (!ft_strcmp(av[1], "here_doc"))
+	{
+		here_doc_f(av, env);
+	}
+	else
+		bonus_fonction(ac, av, env);
+	return (0);
 }

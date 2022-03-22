@@ -6,7 +6,7 @@
 /*   By: nrahali <nrahali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 03:45:06 by nrahali           #+#    #+#             */
-/*   Updated: 2022/03/21 02:33:42 by nrahali          ###   ########.fr       */
+/*   Updated: 2022/03/22 01:43:28 by nrahali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,13 @@ char	**ft_split(char *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
 char	**access_path(char **env, char *av);
 int		here_doc(char **av);
-int     ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(char *s1, char *s2);
 char	*get_next_line(int fd);
 char	*ft_strjoin_not(char *s1, char *s2);
+void	check_fork1_doc(int pfd[2], char **env, char *av2, char **av);
+void	check_fork2_doc(int pfd[2], char **env, char *av4, char *av3);
+void	ft_fork_bonus(int ac, char **av, char **env, t_ppb *pip);
+void	bonus_fonction(int ac, char **av, char **env);
+void	create_pipe(t_ppb *pip);
 
 #endif

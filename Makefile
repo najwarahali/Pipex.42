@@ -14,9 +14,12 @@ NAME= pipex
 BONUS= bonus
 CC= gcc
 FLAGS= -Wall -Wextra -Werror
-SRC= ./Mondatory/main.c ./Mondatory/pipex_utils.c ./Mondatory/ft_split.c ./Mondatory/check_files.c ./Mondatory/check_cmd.c ./Mondatory/pipe.c
+SRC= ./Mondatory/main.c ./Mondatory/pipex_utils.c ./Mondatory/ft_split.c \
+	./Mondatory/check_files.c ./Mondatory/check_cmd.c ./Mondatory/pipe.c
 
-SRC_bonus= ./pipex_bonus/main_bonus.c ./pipex_bonus/pipex_utils_bonus.c ./pipex_bonus/ft_split.c ./pipex_bonus/check_files_bonus.c ./pipex_bonus/check_cmd_bonus.c ./pipex_bonus/get_next_line.c ./pipex_bonus/get_next_line_utils.c ./pipex_bonus/here_doc.c
+SRC_bonus= ./pipex_bonus/main_bonus.c ./pipex_bonus/pipex_utils_bonus.c ./pipex_bonus/ft_split.c \
+			./pipex_bonus/check_files_bonus.c ./pipex_bonus/check_cmd_bonus.c ./pipex_bonus/get_next_line.c \
+			./pipex_bonus/get_next_line_utils.c ./pipex_bonus/here_doc.c ./pipex_bonus/fork_heredoc.c ./pipex_bonus/pipex_bonus_fonction.c
 
 OBJ= $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_bonus:.c=.o)

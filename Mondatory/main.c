@@ -32,6 +32,5 @@ int	main(int ac, char **av, char **env)
 	close(pfd[1]);
 	wait(0);
 	wait(0);
-	system("leaks pipex");
 	return (0);
 }
