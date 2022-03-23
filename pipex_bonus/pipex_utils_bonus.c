@@ -6,7 +6,7 @@
 /*   By: nrahali <nrahali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 17:29:17 by nrahali           #+#    #+#             */
-/*   Updated: 2022/03/21 01:59:16 by nrahali          ###   ########.fr       */
+/*   Updated: 2022/03/24 00:43:05 by nrahali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	ft_strncmp(char *s1, char *s2, int n)
 	char			*s3;
 	char			*s4;
 
+	if (s1 == 0 || s2 == 0)
+		return (-1);
 	if (n == 0)
 		return (0);
 	s3 = (char *)s1;

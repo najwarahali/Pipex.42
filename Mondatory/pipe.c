@@ -12,19 +12,20 @@
 
 #include "../pipex.h"
 
-void	check_fork1(int pfd[2], char **env, char *av1, char *av2)
+void	check_fork1(int pfd[2], char **env, char **av, int filein)
 {
 	char	**cmd;
-	int		filein;
 	int		i;
 
-	filein = check_fd1(av1);
 	if (filein == -1)
 		return ;
-	cmd = access_path(env, av2);
+	cmd = access_path(env, av[2]);
 	i = fork();
 	if (i == -1)
+	{
 		perror("fork error");
+		exit(1);
+	}
 	if (i == 0)
 	{
 		close (pfd[0]);
@@ -36,17 +37,18 @@ void	check_fork1(int pfd[2], char **env, char *av1, char *av2)
 	ft_free_it(cmd, i = 0);
 }
 
-void	check_fork2(int pfd[2], char **env, char *av4, char *av3)
+void	check_fork2(int pfd[2], char **env, char **av, int fileout)
 {
 	char	**cmd;
-	int		fileout;
 	int		i;
 
-	cmd = access_path(env, av3);
-	fileout = check_fd2(av4);
+	cmd = access_path(env, av[3]);
 	i = fork();
 	if (i == -1)
+	{
 		perror("fork error");
+		exit(1);
+	}
 	if (i == 0)
 	{
 		close (pfd[1]);

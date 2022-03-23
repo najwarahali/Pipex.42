@@ -6,7 +6,7 @@
 /*   By: nrahali <nrahali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:57:24 by nrahali           #+#    #+#             */
-/*   Updated: 2022/03/22 01:57:28 by nrahali          ###   ########.fr       */
+/*   Updated: 2022/03/24 00:33:03 by nrahali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**get_path(char **path);
 char	**ft_split(char *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
 char	**access_path(char **env, char *av);
-void	check_fork1(int pfd[2], char **env, char *av1, char *av2);
-void	check_fork2(int pfd[2], char **env, char *av4, char *av3);
+void	check_fork1(int pfd[2], char **env, char **av, int filein);
+void	check_fork2(int pfd[2], char **env, char **av, int fileout);
 
 #endif

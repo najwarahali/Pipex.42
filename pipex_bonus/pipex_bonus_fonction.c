@@ -6,7 +6,7 @@
 /*   By: nrahali <nrahali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:12:56 by nrahali           #+#    #+#             */
-/*   Updated: 2022/03/22 02:00:11 by nrahali          ###   ########.fr       */
+/*   Updated: 2022/03/23 22:54:47 by nrahali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,31 @@ void	create_pipe(t_ppb *pip)
 	}
 }
 
+void	check_filein(t_ppb *pip)
+{
+	if (pip->filein == -1)
+	{
+		write(2, "filein error: No such file or directory \n", 42);
+		exit (1);
+	}
+	else
+		my_dup2(pip->filein, pip->p[1]);
+}
+
 void	ft_fork_bonus(int ac, char **av, char **env, t_ppb *pip)
 {
 	pip->fileout = check_fd2(av[ac - 1]);
 	pip->filein = check_fd1(av[1]);
 	pip->fid = fork();
+	if (pip->fid == -1)
+	{
+		perror("fork error");
+		exit(1);
+	}
 	if (pip->fid == 0)
 	{
 		if (pip->i == 0)
-			my_dup2(pip->filein, pip->p[1]);
+			check_filein(pip);
 		else if (pip->i == pip->num_fork - 1)
 			my_dup2(pip->p[2 * pip->i - 2], pip->fileout);
 		else
@@ -49,6 +65,7 @@ void	ft_fork_bonus(int ac, char **av, char **env, t_ppb *pip)
 			close(pip->p[pip->j]);
 		pip->cmd = access_path(env, av[pip->i + 2]);
 		execve(pip->cmd[0], pip->cmd, env);
+		perror("This is not a command.");
 	}
 }
 
@@ -65,10 +82,11 @@ void	bonus_fonction(int ac, char **av, char **env)
 	pip.i = -1;
 	while (++(pip.i) < pip.num_fork)
 		ft_fork_bonus(ac, av, env, &pip);
+	free(pip.p);
 	pip.j = -1;
 	while (++(pip.j) < pip.num_pipe)
 		close(pip.p[pip.j]);
 	pip.i = -1;
 	while (++(pip.i) < pip.num_fork)
-		waitpid(-1, NULL, 0);
+		wait(NULL);
 }

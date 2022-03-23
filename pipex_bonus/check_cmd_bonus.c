@@ -6,7 +6,7 @@
 /*   By: nrahali <nrahali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 17:22:21 by nrahali           #+#    #+#             */
-/*   Updated: 2022/03/20 03:34:26 by nrahali          ###   ########.fr       */
+/*   Updated: 2022/03/23 23:58:54 by nrahali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char	**get_path(char **path)
 		}
 		i++;
 	}
+	write(2, "NO PATH : No such file or directory\n", 37);
+	exit(1);
 	return (NULL);
 }
 

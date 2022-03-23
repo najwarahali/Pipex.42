@@ -18,7 +18,7 @@ int	check_fd1(char *av)
 
 	fd = open(av, O_RDONLY, 0644);
 	if (fd == -1)
-		perror("File not exist");
+		perror("File Not Exist");
 	return (fd);
 }
 

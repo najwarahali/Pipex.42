@@ -6,7 +6,7 @@
 /*   By: nrahali <nrahali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:56:13 by nrahali           #+#    #+#             */
-/*   Updated: 2022/03/22 01:56:16 by nrahali          ###   ########.fr       */
+/*   Updated: 2022/03/24 00:40:11 by nrahali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 void	here_doc_f(char **av, char **env)
 {
+	int	filein;
+	int	fileout;
 	int	fd[2];
 
+	filein = here_doc(av);
+	fileout = check_fd2(av[5]);
 	if (pipe(fd) == -1)
 	{
 		perror("pipe error");
 		exit (1);
 	}
-	check_fork1_doc(fd, env, av[3], av);
-	check_fork2_doc(fd, env, av[5], av[4]);
+	check_fork1_doc(fd, env, filein, av);
+	check_fork2_doc(fd, env, av, fileout);
 	close(fd[0]);
 	close(fd[1]);
-	wait(0);
-	wait(0);
+	wait(NULL);
+	wait(NULL);
 }
 
 int	main(int ac, char **av, char **env)

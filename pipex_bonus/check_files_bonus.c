@@ -6,7 +6,7 @@
 /*   By: nrahali <nrahali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 17:34:56 by nrahali           #+#    #+#             */
-/*   Updated: 2022/03/22 01:37:05 by nrahali          ###   ########.fr       */
+/*   Updated: 2022/03/23 22:57:00 by nrahali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	check_fd1(char *av)
 	int		fd;
 
 	fd = open(av, O_RDONLY, 0644);
-	if (fd == -1)
-		perror("infile error");
 	return (fd);
 }
 

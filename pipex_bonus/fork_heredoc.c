@@ -6,23 +6,24 @@
 /*   By: nrahali <nrahali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:55:50 by nrahali           #+#    #+#             */
-/*   Updated: 2022/03/22 01:55:56 by nrahali          ###   ########.fr       */
+/*   Updated: 2022/03/24 00:42:15 by nrahali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex_bonus.h"
 
-void	check_fork1_doc(int pfd[2], char **env, char *av2, char **av)
+void	check_fork1_doc(int pfd[2], char **env, int filein, char **av)
 {
 	char	**cmd;
 	int		i;
-	int		filein;
 
-	filein = here_doc(av);
-	cmd = access_path(env, av2);
+	cmd = access_path(env, av[3]);
 	i = fork();
 	if (i == -1)
+	{
 		perror("fork error");
+		exit(1);
+	}
 	if (i == 0)
 	{
 		close (pfd[0]);
@@ -34,17 +35,18 @@ void	check_fork1_doc(int pfd[2], char **env, char *av2, char **av)
 	ft_free_it(cmd, i = 0);
 }
 
-void	check_fork2_doc(int pfd[2], char **env, char *av4, char *av3)
+void	check_fork2_doc(int pfd[2], char **env, char **av, int fileout)
 {
 	char	**cmd;
-	int		fileout;
 	int		i;
 
-	cmd = access_path(env, av3);
-	fileout = check_fd2(av4);
+	cmd = access_path(env, av[4]);
 	i = fork();
 	if (i == -1)
+	{
 		perror("fork error");
+		exit(1);
+	}
 	if (i == 0)
 	{
 		close (pfd[1]);

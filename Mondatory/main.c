@@ -15,7 +15,11 @@
 int	main(int ac, char **av, char **env)
 {
 	int	pfd[2];
+	int	filein;
+	int	fileout;
 
+	filein = check_fd1(av[1]);
+	fileout = check_fd2(av[4]);
 	if (ac != 5)
 	{
 		perror("Error of arguments.");
@@ -26,11 +30,11 @@ int	main(int ac, char **av, char **env)
 		perror("pipe error");
 		exit (1);
 	}
-	check_fork1(pfd, env, av[1], av[2]);
-	check_fork2(pfd, env, av[4], av[3]);
+	check_fork1(pfd, env, av, filein);
+	check_fork2(pfd, env, av, fileout);
 	close(pfd[0]);
 	close(pfd[1]);
-	wait(0);
-	wait(0);
+	wait(NULL);
+	wait(NULL);
 	return (0);
 }
